@@ -52,6 +52,6 @@ helper:
       rule:
         data: 1#20190219
         transfer-mode: override_first
-  tool-cmp-api:
+  tool-cmp-idempotent:
     nonidempotent:
       redis-key: helper:tool:cmp:api:nonidempotent

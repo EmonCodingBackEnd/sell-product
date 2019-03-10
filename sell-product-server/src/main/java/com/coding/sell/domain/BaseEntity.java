@@ -12,13 +12,13 @@
  ********************************************************************************/
 package com.coding.sell.domain;
 
-import lombok.Getter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Getter
+@Data
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
@@ -40,7 +40,7 @@ public abstract class BaseEntity implements Serializable {
 
     @Version
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version = 0;
 
     protected void setDeleted(Integer deleted) {
         this.deleted = deleted;
@@ -54,7 +54,7 @@ public abstract class BaseEntity implements Serializable {
         this.updateTime = updateTime;
     }
 
-    protected void setVersion(int version) {
+    protected void setVersion(Integer version) {
         this.version = version;
     }
 }

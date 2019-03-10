@@ -1,14 +1,14 @@
 /*
- * 文件名称：ProductCategory.java
+ * 文件名称：ProductInfo.java
  * 系统名称：[系统名称]
  * 模块名称：[模块名称]
  * 软件版权：Copyright (c) 2011-2019, liming20110711@163.com All Rights Reserved.
  * 功能说明：[请在此处输入功能说明]
  * 开发人员：Rushing0711
- * 创建日期：20190310 00:51
+ * 创建日期：20190310 08:05
  * 修改记录：
  * <Version>        <DateSerial>        <Author>        <Description>
- * 1.0.0            20190310-01         Rushing0711     M201903100051 新建文件
+ * 1.0.0            20190310-01         Rushing0711     M201903100805 新建文件
  ********************************************************************************/
 package com.coding.sell.domain;
 
@@ -17,11 +17,12 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
- * 商品类目表.
+ * 商品表.
  *
- * <p>创建时间: <font style="color:#00FFFF">20190310 08:04</font><br>
+ * <p>创建时间: <font style="color:#00FFFF">20190310 08:15</font><br>
  * [请在此输入功能详述]
  *
  * @author Rushing0711
@@ -30,11 +31,11 @@ import javax.persistence.*;
  */
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "product_category")
+@Table(name = "product_info")
 @Data
-public class ProductCategory extends BaseEntity {
+public class ProductInfo extends BaseEntity {
 
-    private static final long serialVersionUID = 8555916367367748870L;
+    private static final long serialVersionUID = 1048251028840319951L;
 
     @Id
     @Column(name = "id")
@@ -45,11 +46,27 @@ public class ProductCategory extends BaseEntity {
     )
     private Long id;
 
-    /** 类目名称. */
-    @Column(name = "category_name")
-    private String categoryName;
-
     /** 类目编号. */
     @Column(name = "category_type")
     private Integer categoryType;
+
+    /** 商品名称. */
+    @Column(name = "product_name")
+    private String productName;
+
+    /** 单价. */
+    @Column(name = "product_price")
+    private BigDecimal productPrice;
+
+    /** 描述. */
+    @Column(name = "product_description")
+    private String productDescription;
+
+    /** 小图. */
+    @Column(name = "product_icon")
+    private String productIcon;
+
+    /** 商品状态. */
+    @Column(name = "product_status")
+    private Integer productStatus;
 }

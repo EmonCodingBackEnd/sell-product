@@ -79,4 +79,45 @@ public interface Dicts {
 
     // ==================================================华丽的分割线==================================================
 
+    /** 【代码和数据库】数据是否已删除，1-已删除； 0-未删除 */
+    interface Deleted {
+        String NAME = "deleted";
+        /** 已删除. */
+        Integer YES = 1;
+        /** 未删除. */
+        Integer NO = 0;
+    }
+
+    /** 【仅定义在代码】退款状态. */
+    enum RefundStatus implements BaseEnum<Integer> {
+        /** 退款申请中. */
+        REFUNDING(1),
+        /** 退款成功. */
+        SUCCESS(2),
+        /** 退款失败. */
+        FAILURE(9),
+        ;
+
+        public static String NAME = "refund_status";
+
+        RefundStatus(Integer value) {
+            this.value = value;
+        }
+
+        private Integer value;
+
+        @Override
+        public Integer getValue() {
+            return value;
+        }
+    }
+
+    /** 【仅定义在代码】是与否；1-是;0-否. */
+    interface YesOrNo {
+        String NAME = "yes_or_no";
+        /** 是. */
+        Integer YES = 1;
+        /** 否. */
+        Integer NO = 0;
+    }
 }
