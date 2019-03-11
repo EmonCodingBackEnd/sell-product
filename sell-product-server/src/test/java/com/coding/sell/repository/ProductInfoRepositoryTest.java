@@ -13,7 +13,7 @@
 package com.coding.sell.repository;
 
 import com.coding.sell.SellProductApplicationTests;
-import com.coding.sell.common.Dicts;
+import com.coding.sell.common.DictDefinition;
 import com.coding.sell.domain.ProductInfo;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,7 +28,7 @@ public class ProductInfoRepositoryTest extends SellProductApplicationTests {
     @Test
     public void findByProductStatusAndDeleted() throws Exception {
         List<ProductInfo> productList =
-                productRepository.findByProductStatusAndDeleted(1, Dicts.Deleted.NO);
+                productRepository.findByProductStatusAndDeleted(1, DictDefinition.Deleted.NO);
         Assert.assertTrue(productList.size() > 0);
     }
 }

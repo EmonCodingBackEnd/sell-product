@@ -13,7 +13,7 @@
 package com.coding.sell.repository;
 
 import com.coding.sell.SellProductApplicationTests;
-import com.coding.sell.common.Dicts;
+import com.coding.sell.common.DictDefinition;
 import com.coding.sell.domain.ProductCategory;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class ProductCategoryRepositoryTest extends SellProductApplicationTests {
     public void findByCategoryTypeInAndDeleted() throws Exception {
         List<ProductCategory> categoryList =
                 categoryRepository.findByCategoryTypeInAndDeleted(
-                        Arrays.asList(11, 12), Dicts.Deleted.NO);
+                        Arrays.asList(11, 12), DictDefinition.Deleted.NO);
         Assert.assertTrue(categoryList.size() == 0);
     }
 }

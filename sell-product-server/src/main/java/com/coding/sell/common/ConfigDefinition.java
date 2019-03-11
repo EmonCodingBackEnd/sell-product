@@ -31,4 +31,4 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "common.config")
 @Slf4j
-public class Configs {}
+public class ConfigDefinition {}

@@ -22,4 +22,4 @@ package com.coding.sell.common;
  * @version 1.0.0
  * @since 1.0.0
  */
-public interface Consts {}
+public interface ConstantDefinition {}

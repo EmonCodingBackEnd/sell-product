@@ -27,9 +27,9 @@ import org.slf4j.LoggerFactory;
  * @version 1.0.0
  * @since 1.0.0
  */
-public interface Dicts {
+public interface DictDefinition {
 
-    Logger log = LoggerFactory.getLogger(Dicts.class);
+    Logger log = LoggerFactory.getLogger(DictDefinition.class);
 
     interface BaseEnum<T> {
         T getValue();

@@ -17,6 +17,8 @@ import lombok.Getter;
 @Getter
 public enum AppStatus implements com.coding.helpers.tool.cmp.exception.AppStatus {
     DICT_ENUM_NOT_EXIST(3139, "根据字典值找不到对应字典"),
+    FROM_JSON_ERRPR(3201, "JSON转换到对象错误"),
+    TO_JSON_ERRPR(3202, "对象转换到JSON错误"),
     ;
     private Integer errorCode;
 
