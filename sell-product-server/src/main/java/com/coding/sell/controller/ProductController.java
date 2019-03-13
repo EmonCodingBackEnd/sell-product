@@ -12,7 +12,22 @@
  ********************************************************************************/
 package com.coding.sell.controller;
 
+import com.coding.sell.service.api.ProductService;
+import com.coding.sell.service.req.FindUpAllRequest;
+import com.coding.sell.service.res.FindUpAllResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ProductController {}
+@RequestMapping("/product")
+public class ProductController {
+
+    @Autowired ProductService productService;
+
+    @PostMapping("/findUpAll")
+    public FindUpAllResponse findUpAll(FindUpAllRequest request) {
+        return productService.findUpAll(request);
+    }
+}
