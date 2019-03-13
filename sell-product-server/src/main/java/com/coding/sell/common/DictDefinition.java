@@ -14,6 +14,9 @@ package com.coding.sell.common;
 
 import com.coding.helpers.tool.cmp.exception.AppException;
 import com.coding.sell.exception.AppStatus;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,28 +91,17 @@ public interface DictDefinition {
         Integer NO = 0;
     }
 
-    /** 【仅定义在代码】退款状态. */
-    enum RefundStatus implements BaseEnum<Integer> {
-        /** 退款申请中. */
-        REFUNDING(1),
-        /** 退款成功. */
-        SUCCESS(2),
-        /** 退款失败. */
-        FAILURE(9),
+    /** 【仅定义在代码】商品上下架状态. */
+    @Getter
+    @RequiredArgsConstructor
+    enum ProductStatus implements BaseEnum<Integer> {
+        /** 在架. */
+        UP(0),
+        /** 下架. */
+        DOWN(1),
         ;
-
-        public static String NAME = "refund_status";
-
-        RefundStatus(Integer value) {
-            this.value = value;
-        }
-
-        private Integer value;
-
-        @Override
-        public Integer getValue() {
-            return value;
-        }
+        public static final String NAME = "product_status";
+        @NonNull private Integer value;
     }
 
     /** 【仅定义在代码】是与否；1-是;0-否. */
