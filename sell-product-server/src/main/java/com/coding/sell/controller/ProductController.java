@@ -26,7 +26,7 @@ public class ProductController {
 
     @Autowired ProductService productService;
 
-    @PostMapping("/findUpAll")
+    @PostMapping("/list")
     public FindUpAllResponse findUpAll(FindUpAllRequest request) {
         return productService.findUpAll(request);
     }

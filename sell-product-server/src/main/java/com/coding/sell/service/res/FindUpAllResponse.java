@@ -13,10 +13,12 @@
 package com.coding.sell.service.res;
 
 import com.coding.helpers.tool.cmp.api.AppResponse;
-import com.coding.sell.domain.ProductInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -24,5 +26,39 @@ import java.util.List;
 public class FindUpAllResponse extends AppResponse {
     private static final long serialVersionUID = -2328943867961928708L;
 
-    private List<ProductInfo>  productInfoList;
+    @JsonProperty("data")
+    private List<ProductVO> productVOList;
+
+    @Data
+    public static class ProductVO implements Serializable {
+
+        private static final long serialVersionUID = -2870583468624341181L;
+
+        /** 商品类型名称. */
+        @JsonProperty("name")
+        private String categoryName;
+
+        /** 商品类型值. */
+        @JsonProperty("type")
+        private Integer categoryType;
+
+        private List<FoodVO> foodList;
+    }
+
+    @Data
+    public static class FoodVO implements Serializable {
+
+        private static final long serialVersionUID = -7780375263109327785L;
+
+        private Long id;
+
+        @JsonProperty("name")
+        private String productName;
+
+        private BigDecimal productPrice;
+
+        private String productDescription;
+
+        private String productIcon;
+    }
 }

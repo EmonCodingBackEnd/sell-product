@@ -1,3 +1,6 @@
+server:
+  port: 8751
+
 spring:
   datasource:
 #    MySQL5.7的驱动类
