@@ -73,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
             log.error("【商品查询】查询商品信息失败！");
             throw new AppException(StatusDefinition.PARAM_ERROR);
         }
-        response.setProductVOList(productVOList);
+        response.setData(productVOList);
         return response;
     }
 }

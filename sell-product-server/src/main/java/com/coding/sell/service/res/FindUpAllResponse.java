@@ -23,11 +23,8 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class FindUpAllResponse extends AppResponse {
+public class FindUpAllResponse extends AppResponse<List<FindUpAllResponse.ProductVO>> {
     private static final long serialVersionUID = -2328943867961928708L;
-
-    @JsonProperty("data")
-    private List<ProductVO> productVOList;
 
     @Data
     public static class ProductVO implements Serializable {
