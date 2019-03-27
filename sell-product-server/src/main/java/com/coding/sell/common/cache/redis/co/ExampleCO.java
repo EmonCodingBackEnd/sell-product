@@ -10,7 +10,7 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20190327-01         Rushing0711     M201903271801 新建文件
  ********************************************************************************/
-package com.coding.sell.cache.redis.co;
+package com.coding.sell.common.cache.redis.co;
 
 import lombok.Data;
 

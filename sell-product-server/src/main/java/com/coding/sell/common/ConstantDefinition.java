@@ -12,8 +12,6 @@
  ********************************************************************************/
 package com.coding.sell.common;
 
-import com.coding.sell.cache.redis.AppRedisKey;
-
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;

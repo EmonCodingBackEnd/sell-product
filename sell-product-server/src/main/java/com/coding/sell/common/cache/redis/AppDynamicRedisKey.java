@@ -10,7 +10,7 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20190327-01         Rushing0711     M201903271807 新建文件
  ********************************************************************************/
-package com.coding.sell.cache.redis;
+package com.coding.sell.common.cache.redis;
 
 import com.coding.helpers.tool.cmp.common.cache.AppBaseRedisKey;
 import com.coding.sell.common.ConstantDefinition;
