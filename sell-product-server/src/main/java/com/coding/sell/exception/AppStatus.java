@@ -10,9 +10,9 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20190318-01         Rushing0711     M201903180646 新建文件
  ********************************************************************************/
-package com.coding.sell.common;
+package com.coding.sell.exception;
 
-import com.coding.helpers.tool.cmp.exception.AppStatus;
+import com.coding.helpers.tool.cmp.exception.AppBaseStatus;
 import lombok.Getter;
 
 /**
@@ -26,8 +26,8 @@ import lombok.Getter;
  * @since 1.0.0
  */
 @Getter
-public enum StatusDefinition implements AppStatus {
-    PARAM_ERROR(1100, "请求参数错误"),
+public enum AppStatus implements AppBaseStatus {
+    PARAM_ERROR(1000000, "请求参数错误"),
     DICT_ENUM_NOT_EXIST(3139, "根据字典值找不到对应字典"),
     FROM_JSON_ERRPR(3201, "JSON转换到对象错误"),
     TO_JSON_ERRPR(3202, "对象转换到JSON错误"),
@@ -36,7 +36,7 @@ public enum StatusDefinition implements AppStatus {
 
     private String errorMessage;
 
-    StatusDefinition(Integer errorCode, String errorMessage) {
+    AppStatus(Integer errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }

@@ -14,7 +14,7 @@ package com.coding.sell.service.impl;
 
 import com.coding.helpers.tool.cmp.exception.AppException;
 import com.coding.sell.common.DictDefinition;
-import com.coding.sell.common.StatusDefinition;
+import com.coding.sell.exception.AppStatus;
 import com.coding.sell.domain.ProductCategory;
 import com.coding.sell.domain.ProductInfo;
 import com.coding.sell.repository.ProductCategoryRepository;
@@ -71,7 +71,7 @@ public class ProductServiceImpl implements ProductService {
         }
         if (CollectionUtils.isEmpty(productVOList)) {
             log.error("【商品查询】查询商品信息失败！");
-            throw new AppException(StatusDefinition.PARAM_ERROR);
+            throw new AppException(AppStatus.PARAM_ERROR);
         }
         response.setData(productVOList);
         return response;
