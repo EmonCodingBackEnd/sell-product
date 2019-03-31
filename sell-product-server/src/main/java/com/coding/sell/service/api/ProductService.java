@@ -12,11 +12,21 @@
  ********************************************************************************/
 package com.coding.sell.service.api;
 
-import com.coding.sell.service.req.FindUpAllRequest;
-import com.coding.sell.service.res.FindUpAllResponse;
+import com.coding.sell.service.req.DecreaseStockRequest;
+import com.coding.sell.service.req.OnSaleListRequest;
+import com.coding.sell.service.req.ListForOrderRequest;
+import com.coding.sell.service.res.DecreaseStockResponse;
+import com.coding.sell.service.res.OnSaleListResponse;
+import com.coding.sell.service.res.ListForOrderResponse;
 
 public interface ProductService {
 
     /** 查询所有在架商品. */
-    FindUpAllResponse findUpAll(FindUpAllRequest request);
+    OnSaleListResponse onSaleList(OnSaleListRequest request);
+
+    /** 查询订单所需商品. */
+    ListForOrderResponse listForOrder(ListForOrderRequest request);
+
+    /** 商品库存扣减. */
+    DecreaseStockResponse decreaseStock(DecreaseStockRequest request);
 }

@@ -23,11 +23,11 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class FindUpAllResponse extends AppResponse<List<FindUpAllResponse.ProductVO>> {
+public class OnSaleListResponse extends AppResponse<List<OnSaleListResponse.CategoryVO>> {
     private static final long serialVersionUID = -2328943867961928708L;
 
     @Data
-    public static class ProductVO implements Serializable {
+    public static class CategoryVO implements Serializable {
 
         private static final long serialVersionUID = -2870583468624341181L;
 
@@ -39,11 +39,12 @@ public class FindUpAllResponse extends AppResponse<List<FindUpAllResponse.Produc
         @JsonProperty("type")
         private Integer categoryType;
 
-        private List<FoodVO> foodList;
+        @JsonProperty("items")
+        private List<ItemVO> itemVOList;
     }
 
     @Data
-    public static class FoodVO implements Serializable {
+    public static class ItemVO implements Serializable {
 
         private static final long serialVersionUID = -7780375263109327785L;
 

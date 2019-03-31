@@ -13,9 +13,14 @@
 package com.coding.sell.controller;
 
 import com.coding.sell.service.api.ProductService;
-import com.coding.sell.service.req.FindUpAllRequest;
-import com.coding.sell.service.res.FindUpAllResponse;
+import com.coding.sell.service.req.DecreaseStockRequest;
+import com.coding.sell.service.req.OnSaleListRequest;
+import com.coding.sell.service.req.ListForOrderRequest;
+import com.coding.sell.service.res.DecreaseStockResponse;
+import com.coding.sell.service.res.OnSaleListResponse;
+import com.coding.sell.service.res.ListForOrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.reactive.DefaultRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +32,17 @@ public class ProductController {
 
     @Autowired ProductService productService;
 
-    @PostMapping("/list")
-    public FindUpAllResponse findUpAll(@RequestBody FindUpAllRequest request) {
-        return productService.findUpAll(request);
+    @PostMapping("/onSaleList")
+    public OnSaleListResponse onSaleList(@RequestBody OnSaleListRequest request) {
+        return productService.onSaleList(request);
+    }
+
+    @PostMapping("/listForOrder")
+    public ListForOrderResponse listForOrder(@RequestBody ListForOrderRequest request) {
+        return productService.listForOrder(request);
+    }
+    @PostMapping("/decreaseStock")
+    public DecreaseStockResponse decreaseStock(@RequestBody DecreaseStockRequest request) {
+        return productService.decreaseStock(request);
     }
 }

@@ -15,6 +15,7 @@ package com.coding.sell.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -57,6 +58,10 @@ public class ProductInfo extends BaseEntity {
     /** 单价. */
     @Column(name = "product_price")
     private BigDecimal productPrice;
+
+    /** 库存. */
+    @Column(name = "product_stock")
+    private Integer productStock;
 
     /** 描述. */
     @Column(name = "product_description")

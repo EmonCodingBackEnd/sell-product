@@ -20,4 +20,6 @@ import java.util.List;
 public interface ProductInfoRepository extends JpaRepository<ProductInfo, Long> {
 
     List<ProductInfo> findByProductStatusAndDeleted(Integer productStatus, Integer deleted);
+
+    List<ProductInfo> findByIdIn(List<Long> productIdList);
 }
