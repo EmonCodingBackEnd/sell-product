@@ -11,8 +11,8 @@
     <name>sell-product</name>
 
     <modules>
-        <module>sell-product-api</module>
         <module>sell-product-common</module>
+        <module>sell-product-client</module>
         <module>sell-product-server</module>
     </modules>
 
@@ -40,12 +40,12 @@
             <!-- 定义一方包 beg -->
             <dependency>
                 <groupId>com.coding.sell</groupId>
-                <artifactId>sell-product-api</artifactId>
+                <artifactId>sell-product-common</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.coding.sell</groupId>
-                <artifactId>sell-product-common</artifactId>
+                <artifactId>sell-product-client</artifactId>
                 <version>${revision}</version>
             </dependency>
             <!-- 定义一方包 end -->

@@ -84,7 +84,7 @@
         <!-- 引入一方包 beg -->
         <dependency>
             <groupId>com.coding.sell</groupId>
-            <artifactId>sell-product-api</artifactId>
+            <artifactId>sell-product-common</artifactId>
         </dependency>
         <!-- 引入一方包 end -->
     </dependencies>

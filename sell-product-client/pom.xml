@@ -9,35 +9,31 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sell-product-common</artifactId>
+    <artifactId>sell-product-client</artifactId>
 
-    <name>sell-product-common</name>
+    <name>sell-product-client</name>
 
     <dependencies>
         <!-- 引入三方包 beg -->
+
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-openfeign-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
         </dependency>
         <!-- 引入三方包 end -->
 
         <!-- 引入二方包 beg -->
-        <dependency>
-            <groupId>com.coding.helpers.tool</groupId>
-            <artifactId>tool-cmp-api</artifactId>
-        </dependency>
         <!-- 引入二方包 end -->
 
         <!-- 引入一方包 beg -->
+        <dependency>
+            <groupId>com.coding.sell</groupId>
+            <artifactId>sell-product-common</artifactId>
+        </dependency>
         <!-- 引入一方包 end -->
     </dependencies>
-
 </project>

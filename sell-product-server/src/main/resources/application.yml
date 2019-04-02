@@ -57,7 +57,7 @@ helper:
         transfer-mode: override_first
   tool-cmp-idempotent:
     nonidempotent:
-      redis-key: helper:tool:cmp:api:nonidempotent
+      redis-key: helper:tool:cmp:client:nonidempotent
 
 logging:
   config: classpath:logback-spring-${spring.profiles.active}.xml
