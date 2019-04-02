@@ -41,6 +41,7 @@ public class ProductController {
     public ListForOrderResponse listForOrder(@RequestBody ListForOrderRequest request) {
         return productService.listForOrder(request);
     }
+
     @PostMapping("/decreaseStock")
     public DecreaseStockResponse decreaseStock(@RequestBody DecreaseStockRequest request) {
         return productService.decreaseStock(request);

@@ -12,11 +12,27 @@
  ********************************************************************************/
 package com.coding.sell.api.product;
 
-import com.coding.sell.req.ProductQueryRequest;
-import com.coding.sell.res.ProductQueryResponse;
+import com.coding.sell.req.DecreaseStockRequest;
+import com.coding.sell.req.ListForOrderRequest;
+import com.coding.sell.req.OnSaleListRequest;
+import com.coding.sell.res.DecreaseStockResponse;
+import com.coding.sell.res.ListForOrderResponse;
+import com.coding.sell.res.OnSaleListResponse;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
 
+@FeignClient(name = "SELL-PRODUCT-PROVIDER")
 public interface ProductService {
 
-    /** 查询所有在架商品列表. */
-    ProductQueryResponse findUpAll(ProductQueryRequest request);
+    /** 查询所有在架商品. */
+    @PostMapping("/onSaleList")
+    OnSaleListResponse onSaleList(OnSaleListRequest request);
+
+    /** 查询订单所需商品. */
+    @PostMapping("/listForOrder")
+    ListForOrderResponse listForOrder(ListForOrderRequest request);
+
+    /** 商品库存扣减. */
+    @PostMapping("/decreaseStock")
+    DecreaseStockResponse decreaseStock(DecreaseStockRequest request);
 }
