@@ -1,4 +1,4 @@
-package com.coding.sell.product;
+package com.coding.sell;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
