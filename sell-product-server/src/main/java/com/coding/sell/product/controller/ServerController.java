@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/product")
 public class ServerController {
 
-    @GetMapping("/msg")
+    @GetMapping("/product/msg")
     public String msg() {
         return "this is product' msg";
     }

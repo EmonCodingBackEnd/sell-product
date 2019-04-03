@@ -12,36 +12,34 @@
  ********************************************************************************/
 package com.coding.sell.product.controller;
 
+import com.coding.sell.product.service.api.ProductService;
 import com.coding.sell.product.service.req.DecreaseStockRequest;
 import com.coding.sell.product.service.req.ListForOrderRequest;
 import com.coding.sell.product.service.req.OnSaleListRequest;
 import com.coding.sell.product.service.res.DecreaseStockResponse;
 import com.coding.sell.product.service.res.ListForOrderResponse;
 import com.coding.sell.product.service.res.OnSaleListResponse;
-import com.coding.sell.product.service.api.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/product")
 public class ProductController {
 
     @Autowired ProductService productService;
 
-    @PostMapping("/onSaleList")
+    @PostMapping("/product/onSaleList")
     public OnSaleListResponse onSaleList(@RequestBody OnSaleListRequest request) {
         return productService.onSaleList(request);
     }
 
-    @PostMapping("/listForOrder")
+    @PostMapping("/product/listForOrder")
     public ListForOrderResponse listForOrder(@RequestBody ListForOrderRequest request) {
         return productService.listForOrder(request);
     }
 
-    @PostMapping("/decreaseStock")
+    @PostMapping("/product/decreaseStock")
     public DecreaseStockResponse decreaseStock(@RequestBody DecreaseStockRequest request) {
         return productService.decreaseStock(request);
     }

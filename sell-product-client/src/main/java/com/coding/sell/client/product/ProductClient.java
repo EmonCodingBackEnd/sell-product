@@ -20,10 +20,14 @@ import com.coding.sell.product.service.res.ListForOrderResponse;
 import com.coding.sell.product.service.res.OnSaleListResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @FeignClient(name = "SELL-PRODUCT-PROVIDER", fallback = ProductClient.ProductClientFallback.class)
 public interface ProductClient {
+
+    @GetMapping("/product/msg")
+    String msg();
 
     /** 查询所有在架商品. */
     @PostMapping("/onSaleList")
@@ -39,6 +43,11 @@ public interface ProductClient {
 
     @Component
     class ProductClientFallback implements ProductClient {
+        @Override
+        public String msg() {
+            return null;
+        }
+
         @Override
         public OnSaleListResponse onSaleList(OnSaleListRequest request) {
             return null;
