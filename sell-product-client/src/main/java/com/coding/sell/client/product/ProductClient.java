@@ -30,15 +30,15 @@ public interface ProductClient {
     String msg();
 
     /** 查询所有在架商品. */
-    @PostMapping("/onSaleList")
+    @PostMapping("/product/onSaleList")
     OnSaleListResponse onSaleList(OnSaleListRequest request);
 
     /** 查询订单所需商品. */
-    @PostMapping("/listForOrder")
+    @PostMapping("/product/listForOrder")
     ListForOrderResponse listForOrder(ListForOrderRequest request);
 
     /** 商品库存扣减. */
-    @PostMapping("/decreaseStock")
+    @PostMapping("/product/decreaseStock")
     DecreaseStockResponse decreaseStock(DecreaseStockRequest request);
 
     @Component
