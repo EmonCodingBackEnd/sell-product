@@ -19,9 +19,10 @@ import com.coding.sell.product.service.res.DecreaseStockResponse;
 import com.coding.sell.product.service.res.ListForOrderResponse;
 import com.coding.sell.product.service.res.OnSaleListResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "SELL-PRODUCT-PROVIDER")
+@FeignClient(name = "SELL-PRODUCT-PROVIDER", fallback = ProductClient.ProductClientFallback.class)
 public interface ProductClient {
 
     /** 查询所有在架商品. */
@@ -35,4 +36,22 @@ public interface ProductClient {
     /** 商品库存扣减. */
     @PostMapping("/decreaseStock")
     DecreaseStockResponse decreaseStock(DecreaseStockRequest request);
+
+    @Component
+    class ProductClientFallback implements ProductClient {
+        @Override
+        public OnSaleListResponse onSaleList(OnSaleListRequest request) {
+            return null;
+        }
+
+        @Override
+        public ListForOrderResponse listForOrder(ListForOrderRequest request) {
+            return null;
+        }
+
+        @Override
+        public DecreaseStockResponse decreaseStock(DecreaseStockRequest request) {
+            return null;
+        }
+    }
 }
