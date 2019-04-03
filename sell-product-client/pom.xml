@@ -15,7 +15,6 @@
 
     <dependencies>
         <!-- 引入三方包 beg -->
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-openfeign-core</artifactId>
