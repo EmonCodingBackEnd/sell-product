@@ -10,6 +10,7 @@ spring:
     active: dev
   cloud:
     config:
+      # 如果设置为true，会覆盖application开头的yml文件内容；如果设置为false，不会启用配置中心内容。
       enabled: false
       discovery:
         enabled: true
