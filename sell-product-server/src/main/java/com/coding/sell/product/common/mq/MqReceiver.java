@@ -29,8 +29,8 @@ import org.springframework.stereotype.Component;
  * @version 1.0.0
  * @since 1.0.0
  */
-@Slf4j
 @Component
+@Slf4j
 public class MqReceiver {
 
     // 第一种方式：需要预先创建队列名为 myQueue 的队列
