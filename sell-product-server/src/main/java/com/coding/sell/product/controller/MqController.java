@@ -29,13 +29,13 @@ public class MqController {
         amqpTemplate.convertAndSend("myQueue", "now " + new Date());
     }
 
-    @PostMapping("/mq/sendComputerOrder")
-    public void sendComputerOrder() {
-        amqpTemplate.convertAndSend("myOrder", "computer", "now " + new Date());
+    @PostMapping("/mq/sendComputer")
+    public void sendComputer() {
+        amqpTemplate.convertAndSend("myOrderExchange", "computer", "now " + new Date());
     }
 
-    @PostMapping("/mq/sendFruitOrder")
-    public void sendFruitOrder() {
-        amqpTemplate.convertAndSend("myOrder", "fruit", "now " + new Date());
+    @PostMapping("/mq/sendFruit")
+    public void sendFruit() {
+        amqpTemplate.convertAndSend("myOrderExchange", "fruit", "now " + new Date());
     }
 }

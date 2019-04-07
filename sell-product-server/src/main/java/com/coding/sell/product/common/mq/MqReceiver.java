@@ -57,25 +57,25 @@ public class MqReceiver {
     @RabbitListener(
         bindings =
                 @QueueBinding(
-                    exchange = @Exchange("myOrder"),
+                    exchange = @Exchange("myOrderExchange"),
                     key = "computer",
-                    value = @Queue("computerOrder")
+                    value = @Queue("myComputerQueue")
                 )
     )
     public void processComputer(String message) {
-        log.info("computer MqReceiver: {}", message);
+        log.info("MqReceiver: {}, key: computer", message);
     }
 
     /** 消息接收方：水果供应商服务，接收消息. */
     @RabbitListener(
         bindings =
                 @QueueBinding(
-                    exchange = @Exchange("myOrder"),
+                    exchange = @Exchange("myOrderExchange"),
                     key = "fruit",
-                    value = @Queue("fruitOrder")
+                    value = @Queue("myFruitQueue")
                 )
     )
     public void processFruit(String message) {
-        log.info("fruit MqReceiver: {}", message);
+        log.info("MqReceiver: {}, key: fruit", message);
     }
 }
