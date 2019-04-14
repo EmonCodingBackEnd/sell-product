@@ -57,6 +57,30 @@ spring:
 #      master: mymaster
 #      nodes: ${dynamic.host}:26379,${dynamic.host}:26378,${dynamic.host}:26377
 
+  cloud:
+    stream:
+#      这个binders的配置，目前来看不是必需的
+#      binders:
+#        rabbit_cluster:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: ${dynamic.host}
+#                port: 5672
+#                username: guest
+#                password: guest
+#                virtual-host: /
+      bindings:
+        output_channel:
+          destination: stream-exchange
+          group: stream-queue
+#          binder: rabbit_cluster
+        input_channel:
+          destination: stream-exchange
+          group: stream-queue
+#          binder: rabbit_cluster
+
 helper:
   plugin-gray-deploy:
     request:
