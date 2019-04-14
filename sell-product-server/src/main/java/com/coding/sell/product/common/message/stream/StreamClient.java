@@ -22,10 +22,14 @@ public interface StreamClient {
     String OUTPUT_CHANNEL = "output_channel";
 
     String INPUT_CHANNEL = "input_channel";
+    String INPUT_CHANNEL2 = "input_channel2";
 
     @Output(StreamClient.OUTPUT_CHANNEL)
     MessageChannel outputChannel();
 
     @Input(StreamClient.INPUT_CHANNEL)
     SubscribableChannel inputChannel();
+
+    @Input(StreamClient.INPUT_CHANNEL2)
+    SubscribableChannel inputChannel2();
 }

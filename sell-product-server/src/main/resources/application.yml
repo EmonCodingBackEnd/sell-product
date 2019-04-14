@@ -75,10 +75,12 @@ spring:
         output_channel:
           destination: stream-exchange
           group: stream-queue
+          content-type: application/json
 #          binder: rabbit_cluster
         input_channel:
           destination: stream-exchange
           group: stream-queue
+          content-type: application/json
 #          binder: rabbit_cluster
 
 helper:
