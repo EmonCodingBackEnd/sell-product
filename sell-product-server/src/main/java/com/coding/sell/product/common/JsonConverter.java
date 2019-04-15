@@ -68,4 +68,15 @@ public class JsonConverter {
         }
         return paramValue;
     }
+
+    public static String toJson(Object object) {
+        String paramValue;
+        try {
+            paramValue = objectMapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            log.error(String.format("【JSON转换错误】对象转换到JSON错误, object=%s", object), e);
+            throw new AppException(AppStatus.TO_JSON_ERRPR);
+        }
+        return paramValue;
+    }
 }

@@ -14,24 +14,30 @@ package com.coding.sell.product.service.impl;
 
 import com.coding.helpers.tool.cmp.exception.AppException;
 import com.coding.sell.product.common.DictDefinition;
+import com.coding.sell.product.common.JsonConverter;
+import com.coding.sell.product.domain.ProductCategory;
+import com.coding.sell.product.domain.ProductInfo;
+import com.coding.sell.product.exception.AppStatus;
+import com.coding.sell.product.message.DecreaseStockMessage;
+import com.coding.sell.product.repository.ProductCategoryRepository;
+import com.coding.sell.product.repository.ProductInfoRepository;
+import com.coding.sell.product.service.api.ProductService;
 import com.coding.sell.product.service.req.DecreaseStockRequest;
 import com.coding.sell.product.service.req.ListForOrderRequest;
 import com.coding.sell.product.service.req.OnSaleListRequest;
 import com.coding.sell.product.service.res.DecreaseStockResponse;
 import com.coding.sell.product.service.res.ListForOrderResponse;
 import com.coding.sell.product.service.res.OnSaleListResponse;
-import com.coding.sell.product.domain.ProductCategory;
-import com.coding.sell.product.domain.ProductInfo;
-import com.coding.sell.product.exception.AppStatus;
-import com.coding.sell.product.repository.ProductCategoryRepository;
-import com.coding.sell.product.repository.ProductInfoRepository;
-import com.coding.sell.product.service.api.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -44,7 +50,9 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired AmqpTemplate amqpTemplate;
-    
+
+    @Autowired TransactionTemplate transactionTemplate;
+
     @Autowired private ProductInfoRepository productInfoRepository;
 
     @Autowired private ProductCategoryRepository categoryRepository;
@@ -112,6 +120,47 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public DecreaseStockResponse decreaseStock(DecreaseStockRequest request) {
         DecreaseStockResponse response = new DecreaseStockResponse();
+        List<ProductInfo> productInfoList =
+                transactionTemplate.execute(
+                        new TransactionCallback<List<ProductInfo>>() {
+                            @Nullable
+                            @Override
+                            public List<ProductInfo> doInTransaction(
+                                    TransactionStatus transactionStatus) {
+                                List<ProductInfo> infoList = null;
+                                try {
+                                    infoList = decreaseStockOnly(request);
+                                } catch (Exception e) {
+                                    log.error("扣库存失败", e);
+                                    transactionStatus.setRollbackOnly();
+                                }
+                                return infoList;
+                            }
+                        });
+
+        if (productInfoList == null) {
+            throw new AppException(AppStatus.INNER_SERVER_ERROR, "扣库存失败");
+        } else {
+            List<DecreaseStockMessage> decreaseStockMessageList =
+                    productInfoList
+                            .stream()
+                            .map(
+                                    e -> {
+                                        DecreaseStockMessage decreaseStockMessage =
+                                                new DecreaseStockMessage();
+                                        BeanUtils.copyProperties(e, decreaseStockMessage);
+                                        return decreaseStockMessage;
+                                    })
+                            .collect(Collectors.toList());
+            // 发送mq消息
+            amqpTemplate.convertAndSend(
+                    "productInfo", JsonConverter.toJson(decreaseStockMessageList));
+        }
+        return response;
+    }
+
+    private List<ProductInfo> decreaseStockOnly(DecreaseStockRequest request) {
+        List<ProductInfo> productInfoList = new ArrayList<>();
         for (DecreaseStockRequest.CartDTO cartDTO : request.getCartDTOList()) {
             Optional<ProductInfo> productInfoOptional =
                     productInfoRepository.findById(cartDTO.getProductId());
@@ -129,7 +178,9 @@ public class ProductServiceImpl implements ProductService {
 
             productInfo.setProductStock(remainStock);
             productInfoRepository.save(productInfo);
+
+            productInfoList.add(productInfo);
         }
-        return response;
+        return productInfoList;
     }
 }
