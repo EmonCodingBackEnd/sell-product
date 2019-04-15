@@ -10,7 +10,7 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20190406-01         Rushing0711     M201904060748 新建文件
  ********************************************************************************/
-package com.coding.sell.product.common.message.mq;
+package com.coding.sell.product.message.mq;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Exchange;

@@ -27,6 +27,7 @@ import com.coding.sell.product.repository.ProductCategoryRepository;
 import com.coding.sell.product.repository.ProductInfoRepository;
 import com.coding.sell.product.service.api.ProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ProductServiceImpl implements ProductService {
 
+    @Autowired AmqpTemplate amqpTemplate;
+    
     @Autowired private ProductInfoRepository productInfoRepository;
 
     @Autowired private ProductCategoryRepository categoryRepository;

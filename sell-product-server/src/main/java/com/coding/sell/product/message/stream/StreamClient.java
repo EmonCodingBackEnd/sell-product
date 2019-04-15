@@ -10,7 +10,7 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20190414-01         Rushing0711     M201904141126 新建文件
  ********************************************************************************/
-package com.coding.sell.product.common.message.stream;
+package com.coding.sell.product.message.stream;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;

@@ -12,7 +12,7 @@
  ********************************************************************************/
 package com.coding.sell.product.controller;
 
-import com.coding.sell.product.common.message.stream.StreamClient;
+import com.coding.sell.product.message.stream.StreamClient;
 import com.coding.sell.product.domain.ProductInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
