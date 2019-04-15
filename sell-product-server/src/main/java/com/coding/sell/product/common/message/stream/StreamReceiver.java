@@ -12,6 +12,7 @@
  ********************************************************************************/
 package com.coding.sell.product.common.message.stream;
 
+import com.coding.sell.product.domain.ProductInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -24,14 +25,19 @@ import org.springframework.stereotype.Component;
 public class StreamReceiver {
 
     @StreamListener(StreamClient.INPUT_CHANNEL)
-    @SendTo(StreamClient.INPUT_CHANNEL2)
-    public String process(Object message) {
+    public void process(Object message) {
         log.info("StreamReceiver: {}", message);
-        return "StreamReceiver has complete";
     }
 
     @StreamListener(StreamClient.INPUT_CHANNEL2)
-    public void process2(String message) {
+    @SendTo(StreamClient.INPUT_CHANNEL21)
+    public String process2(ProductInfo message) {
         log.info("StreamReceiver2: {}", message);
+        return "StreamReceiver has complete";
+    }
+
+    @StreamListener(StreamClient.INPUT_CHANNEL21)
+    public void process21(String message) {
+        log.info("StreamReceiver21: {}", message);
     }
 }

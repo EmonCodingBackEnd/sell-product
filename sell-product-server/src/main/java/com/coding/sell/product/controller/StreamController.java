@@ -13,6 +13,7 @@
 package com.coding.sell.product.controller;
 
 import com.coding.sell.product.common.message.stream.StreamClient;
+import com.coding.sell.product.domain.ProductInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,5 +29,13 @@ public class StreamController {
     @PostMapping("/stream/send")
     public void process() {
         streamClient.outputChannel().send(MessageBuilder.withPayload("now  " + new Date()).build());
+    }
+
+    @PostMapping("/stream/sendDomain")
+    public void processDomain() {
+        ProductInfo productInfo = new ProductInfo();
+        productInfo.setId(123456L);
+        productInfo.setProductName("测试stream的domain");
+        streamClient.outputChannel2().send(MessageBuilder.withPayload(productInfo).build());
     }
 }
