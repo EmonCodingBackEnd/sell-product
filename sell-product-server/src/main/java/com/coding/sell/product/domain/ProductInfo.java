@@ -14,6 +14,7 @@ package com.coding.sell.product.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -31,6 +32,7 @@ import java.math.BigDecimal;
  */
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@DynamicUpdate
 @Table(name = "product_info")
 @Data
 public class ProductInfo extends BaseEntity {

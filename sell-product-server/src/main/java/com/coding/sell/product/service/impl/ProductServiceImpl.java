@@ -35,7 +35,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.util.CollectionUtils;
@@ -116,7 +115,6 @@ public class ProductServiceImpl implements ProductService {
         return response;
     }
 
-    @Transactional
     @Override
     public DecreaseStockResponse decreaseStock(DecreaseStockRequest request) {
         DecreaseStockResponse response = new DecreaseStockResponse();
