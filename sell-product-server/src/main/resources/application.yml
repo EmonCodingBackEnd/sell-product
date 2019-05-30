@@ -12,16 +12,18 @@ eureka:
 spring:
   datasource:
 #    MySQL5.7的驱动类
-    driver-class-name: com.mysql.jdbc.Driver
+#    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: net.sf.log4jdbc.DriverSpy
 #    MySQL8.0的驱动类
 #    driver-class-name: com.mysql.cj.jdbc.Driver
     username: springboot
     password: SpringBoot@123
-    url: jdbc:mysql://${dynamic.host}/selldb?characterEncoding=utf-8&useSSL=false
+#    url: jdbc:mysql://${dynamic.host}/selldb?characterEncoding=utf-8&useSSL=false
+    url: jdbc:log4jdbc:mysql://${dynamic.host}/selldb?characterEncoding=utf-8&useSSL=false
     # 是否使用schema.sql建库和data.sql初始化数据，默认true
     initialization-mode: never
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: none
 #      解决MySQL8.0下错误:Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set
