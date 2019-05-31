@@ -4,7 +4,7 @@ server:
   port: 8751
   tomcat:
     # 处理MultipartFile在Linux系统下找不到目录 /tmp/tomcat.<一串数字>.<port>/work/Tomcat/localhost/<项目名称>
-    basedir: /home/emon/saas/sell/@project.build.finalName@/tmp
+    basedir: /home/emon/saas/@project.build.finalName@/tmp
 
 eureka:
   client:
