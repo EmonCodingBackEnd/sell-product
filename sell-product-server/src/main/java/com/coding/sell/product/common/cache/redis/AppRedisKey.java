@@ -25,6 +25,7 @@ public enum AppRedisKey implements AppDynamicRedisKey {
     /** 获取动态key的实例对象. */
     DYNAMIC("DYNAMIC", "示例"),
     EXAMPLE("serverName", "groupName", "example", "示例"),
+    MANAGE_PARAM_CACHE("manage", "param", "cache", "系统参数缓存"),
     ;
 
     private List<String> keyParts = new ArrayList<>();

@@ -19,12 +19,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 
 /**
  * JSON转换器.
@@ -49,10 +49,24 @@ public class JsonConverter {
         JsonConverter.objectMapper = objectMapper;
     }
 
-    public static <T> T fromJson(String json, Class<T> clazz) {
+    /**
+     * typeOfT获得方式：new TypeToken&lt;T&gt;() {}.getType()；T的举例：List<Long>、List<Map<String,Object>等等.
+     */
+    public static <T> T fromJson(String json, Type typeOfT) {
         T result;
         try {
-            result = gson.fromJson(json, clazz);
+            result = gson.fromJson(json, typeOfT);
+        } catch (JsonSyntaxException e) {
+            log.error(String.format("【JSON转换错误】JSON转换到对象错误, string=%s", json), e);
+            throw new AppException(AppStatus.FROM_JSON_ERRPR);
+        }
+        return result;
+    }
+
+    public static <T> T fromJson(String json, Class<T> clazzOfT) {
+        T result;
+        try {
+            result = gson.fromJson(json, clazzOfT);
         } catch (JsonSyntaxException e) {
             log.error(String.format("【JSON转换错误】JSON转换到对象错误, string=%s", json), e);
             throw new AppException(AppStatus.FROM_JSON_ERRPR);
