@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@ControllerAdvice
+//@ControllerAdvice
 @Slf4j
 public class ExceptionInterceptor {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public AppResponse handle(Exception e) {
-        AppResponse appResponse = AppResponse.getDefaultResponse();
+        AppResponse<Object> appResponse = AppResponse.getDefaultResponse();
         if (e instanceof AppException) {
             AppException appException = (AppException) e;
             appResponse.setErrorCode(appException.getErrorCode());
@@ -40,6 +40,7 @@ public class ExceptionInterceptor {
                     e);
             appResponse.setErrorCode(AppStatus.SYSTEM_UNEXPECTED_ERROR.getErrorCode());
             appResponse.setErrorMessage(AppStatus.SYSTEM_UNEXPECTED_ERROR.getErrorMessage());
+            appResponse.setData(e.getMessage());
         }
         return appResponse;
     }
